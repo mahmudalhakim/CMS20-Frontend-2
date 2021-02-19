@@ -1,0 +1,15 @@
+.socialmediaicons ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.socialmediaicons li {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.socialmediaicons img {
+  width: 30px;
+  border-radius: 50%;
+}
