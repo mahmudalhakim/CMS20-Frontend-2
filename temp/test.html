@@ -7,7 +7,88 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Test</h1>
-    <h2>Test</h2>
+    <h1 id="demo">TEST</h1>
+    <div id="table"></div>
+
+    <script>
+      localStorage.setItem("name", "Mahmud");
+      console.log(localStorage);
+      let name = localStorage.getItem("name");
+
+      console.log("-----KEY -----");
+
+      console.log(localStorage.key(0));
+      console.log(localStorage.key(1));
+
+      console.log("-----KEY -----");
+
+      console.log("-----LENGTH -----");
+
+      console.log(localStorage.length);
+
+      console.log("-----for  -----");
+
+      for (let i = 0; i < localStorage.length; i++) {
+        console.log("Key: " + localStorage.key(i));
+      }
+
+      console.log("----for in ----");
+
+      for (const key in localStorage) {
+        console.log("Key: " + key);
+      }
+
+      localStorage.removeItem("name"); // Test
+
+      name = localStorage.getItem("name");
+      console.log(name); // null
+
+      localStorage.clear();
+
+      // Test
+      console.log(localStorage);
+
+      const myArray = ["A", "B", "C"];
+
+      // OBS! En sträng sparas!
+      localStorage.setItem("myArrayAsString", myArray);
+
+      // Med JSON.stringify sparas arrayen i rätt format
+      localStorage.setItem("myArray", JSON.stringify(myArray));
+
+      let getMyArray = localStorage.getItem("myArray");
+      console.log(getMyArray); //  OBS! En sträng
+      console.log(getMyArray[0]); //  Skriver ut [
+
+      // JSON.parse konverterar tillbaka till en array
+      getMyArray = JSON.parse(localStorage.getItem("myArray"));
+      console.log(getMyArray);
+      console.log(getMyArray[0]); // Skriver ut A
+
+      let myObject = {
+        first: "A",
+        second: "B",
+        third: "C",
+      };
+
+      localStorage.setItem("myObject", JSON.stringify(myObject));
+
+      const getMyObject = JSON.parse(localStorage.getItem("myObject"));
+      console.log(getMyObject);
+
+      let output = "<table>";
+      for (let i = 0; i < localStorage.length; i++) {
+        output += `<tr>
+          <td>${localStorage.key(i)}</td>
+          <td>${localStorage.getItem(localStorage.key(i))}</td>
+          `;
+      }
+      output += "</table>";
+
+      const table = document.getElementById('table');
+      table.innerHTML = output;
+
+
+    </script>
   </body>
 </html>
