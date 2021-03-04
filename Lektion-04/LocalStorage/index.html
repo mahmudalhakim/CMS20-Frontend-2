@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Storage API</title>
+  </head>
+  <body>
+    <h1>Web Storage API</h1>
+    <script>
+      // Spara data i localStorage
+      localStorage.setItem("firstname", "Mahmud");
+      localStorage.setItem("lastname", "Al Hakim");
+      localStorage.setItem("age", 48);
+
+      // Hämta data från LocalStorage
+      console.log(localStorage.getItem("firstname"));
+
+      // Iterera över nycklarna i LocalStorage
+      console.log("--- Nycklar ---");
+      for (let i = 0; i < localStorage.length; i++) {
+        console.log(localStorage.key(i));
+      }
+
+      // Titta i localStorage
+      console.log(localStorage);
+
+      console.log("--- For in loop ---");
+      for (const key in localStorage) {
+        //console.log("Key: " + key);
+        //console.log("Value: " + localStorage[key]);
+
+        if (Object.hasOwnProperty.call(localStorage, key)) {
+          const value = localStorage[key];
+          console.log(value);
+        }
+      }
+
+      // Vad är Object.keys?
+      console.log("--- Object.keys ---");
+      console.log(Object.keys(localStorage));
+      // Vi får en array med våra nycklar!
+
+      const myKeys = Object.keys(localStorage); // En array
+
+      // Skriv ut values
+      myKeys.forEach((key) => console.log(localStorage.getItem(key)));
+
+      console.log("--- Ta bort data från localStorage ---");
+      localStorage.removeItem("lastname");
+      console.log(localStorage);
+      console.log(localStorage.getItem("lastname")); // null
+
+      console.log("--- Rensa localStorage ---");
+      localStorage.clear();
+      console.log(localStorage);
+
+      console.log("--- Spara en array i localStorage");
+      const myArray1 = ["A", "B", "C"];
+      const myArray2 = Array("D", "E", "F");
+
+      // OBS! en bugg - localStorage sparar alltid en sträng
+      localStorage.setItem("myArray1", myArray1); // A,B,C
+      localStorage.setItem("myArray2", myArray2); // D,E,F
+      console.log(localStorage);
+      // Hämta en array
+      let myArray3 = localStorage.getItem("myArray1");
+      console.log(myArray3); // OBS! Detta är en sträng (inte en array)
+      console.log(myArray3[0]); // A
+      console.log(myArray3[1]); // ,  OBS! en bugg
+
+      // Använd JSON.stringify för att lagra arrayer i rätt format
+      localStorage.setItem("myArray1", JSON.stringify(myArray1)); // ["A","B","C"]
+      localStorage.setItem("myArray2", JSON.stringify(myArray2)); // ["D","E","F"]
+      console.log(localStorage);
+      // Hämta en array
+      myArray3 = localStorage.getItem("myArray1");
+      console.log(myArray3); // ["A","B","C"]
+      // En bugg!!! vi får en sträng
+      console.log(myArray3[0]); // [
+      console.log(myArray3[1]); // "
+
+      // Vi måste konvertera stärngen tillbaka till en array
+      myArray3 = JSON.parse(localStorage.getItem("myArray1"));
+      console.log(myArray3);
+      console.log(myArray3[0]); // A
+      console.log(myArray3[1]); // B
+
+      localStorage.clear();
+
+      // Att spara objekt i localStorage
+      const myObject = {
+        firstname: "Mahmud",
+        lastname: "Al Hakim",
+        age: 48,
+        length: 170,
+        address: {
+            street: "Hemfridsvägen",
+            city: "Sollentuna"
+        },
+        hobby:[
+            "JavaScript",
+            "Java",
+            "PHP"
+        ]
+      };
+
+      // OBS! En bugg
+      localStorage.setItem("myObject", myObject); // [object Object] sparas
+      console.log(myObject.toString()); // [object Object]
+
+      // Vi måste serialisera objektet med JSON.stringify
+      localStorage.setItem("myObject", JSON.stringify(myObject));
+      console.log(localStorage);
+
+      // OBS! En bugg
+      let myObject2 = localStorage.getItem("myObject"); // Detta är en sträng
+      console.log(myObject2);
+      console.log(myObject2.firstname); // undefined
+
+      // Vi måste parsa!!
+      myObject2 = JSON.parse(myObject2);
+      console.log(myObject2);
+      console.log(myObject2.firstname); // Mahmud
+      console.log(myObject2.lastname);  // Al Hakim
+
+
+
+    </script>
+  </body>
+</html>
