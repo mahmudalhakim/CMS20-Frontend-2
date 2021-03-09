@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajax - Exempel 2</title>
+  </head>
+  <body>
+    <h1>Ajax - Exempel 2</h1>
+    <button id="loadBtn">Visa alla titlar</button>
+    <div id="output"></div>
+
+    <script>
+      const loadBtn = document.getElementById("loadBtn");
+      loadBtn.addEventListener("click", loadXML);
+
+      function loadXML() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "demo.xml");
+        xhr.send();
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr);
+            const xmlDoc = xhr.responseXML;
+            //console.log(xmlDoc);
+            render(xmlDoc);
+          }
+        };
+      }
+
+      function render(xmlDoc){
+        console.log(xmlDoc);
+        const allCDs = xmlDoc.querySelectorAll("CD");
+        console.log(allCDs);
+
+        let list = "<ul>";
+        for (const cd of allCDs) {
+            console.log(cd);
+            console.dir(cd);
+            console.log(cd.children[0].innerHTML);
+
+            let title = cd.children[0].innerHTML;
+            list += `<li>${title}</li>`;
+        }
+        list += "</ul>";
+
+        console.log(list);
+
+        document.getElementById("output").innerHTML = list;
+
+      }
+    </script>
+  </body>
+</html>
