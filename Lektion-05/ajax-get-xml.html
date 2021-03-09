@@ -8,6 +8,8 @@
   </head>
   <body>
     <h1>Ajax - Exempel 2</h1>
+    <h2>Arbeta med XML</h2>
+
     <button id="loadBtn">Visa alla titlar</button>
     <div id="output"></div>
 
@@ -30,26 +32,25 @@
         };
       }
 
-      function render(xmlDoc){
+      function render(xmlDoc) {
         console.log(xmlDoc);
         const allCDs = xmlDoc.querySelectorAll("CD");
         console.log(allCDs);
 
         let list = "<ul>";
         for (const cd of allCDs) {
-            console.log(cd);
-            console.dir(cd);
-            console.log(cd.children[0].innerHTML);
+          console.log(cd);
+          console.dir(cd);
+          console.log(cd.children[0].innerHTML);
 
-            let title = cd.children[0].innerHTML;
-            list += `<li>${title}</li>`;
+          let title = cd.children[0].innerHTML;
+          list += `<li>${title}</li>`;
         }
         list += "</ul>";
 
         console.log(list);
 
         document.getElementById("output").innerHTML = list;
-
       }
     </script>
   </body>

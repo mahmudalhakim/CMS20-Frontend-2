@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajax - Exempel 3</title>
+  </head>
+  <body>
+    <h1>Ajax - Exempel 3</h1>
+    <h2>Arbeta med JSON</h2>
+
+    <button id="loadBtn">Visa namn och e-post</button>
+    <div id="output"></div>
+
+    <script>
+      const loadBtn = document.getElementById("loadBtn");
+      loadBtn.addEventListener("click", loadJSON);
+
+      function loadJSON() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "demo.json");
+        xhr.send();
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr);
+            let resp = xhr.responseText;
+            console.log(resp); // OBS! En string!
+            console.log( resp.name ); // undefined
+            let jsonObj = JSON.parse(resp); // Ett objekt
+            console.log(jsonObj);
+            console.log(jsonObj.name);
+            console.log(jsonObj.email);
+            render(jsonObj);
+          }
+        };
+      }
+
+      function render(user) {
+        console.log(user);
+        console.log(user.name);
+
+       let output = `
+        <h3>Namn: ${user.name} </h3>
+        <h3>E-post: ${user.email} </h3>
+       `;
+
+        document.getElementById("output").innerHTML = output;
+      }
+    </script>
+  </body>
+</html>

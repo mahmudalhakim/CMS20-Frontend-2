@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajax - Exempel 4</title>
+  </head>
+  <body>
+    <h1>Ajax - Exempel 4</h1>
+    <h2>Arbeta med ett API</h2>
+
+    <button id="loadBtn">Visa namn på alla users från JSONPlaceholder</button>
+    <ol id="output"></ol>
+
+    <script>
+      const loadBtn = document.getElementById("loadBtn");
+      loadBtn.addEventListener("click", loadFromAPI);
+
+      function loadFromAPI() {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://jsonplaceholder.typicode.com/users");
+        xhr.send();
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr);
+            console.log(xhr.responseText); // OBS! En string
+            let data = JSON.parse(xhr.responseText);
+            console.log(data); // Array som innehåller 10 JSON-objekt
+            render(data);
+          }
+        };
+      }
+
+      function render(users) {
+        console.log(users); // Array som innehåller 10 JSON-objekt
+
+        let output = "";
+        users.forEach((user) => output += `<li>${user.name}</li>`);
+
+        document.getElementById("output").innerHTML = output;
+      }
+    </script>
+  </body>
+</html>
