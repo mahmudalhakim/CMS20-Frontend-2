@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Book</title>
+  </head>
+  <body>
+    <h1>My Book</h1>
+    <table id="table"></table>
+
+    <script>
+      let title = "Eloquent JavaScript";
+      let author = "Marijn Haverbeke";
+      
+      localStorage.clear();
+
+      localStorage.setItem("Title", title);
+      localStorage.setItem("Author", author);
+
+      let output = "";
+
+      for (let i = 0; i < localStorage.length; i++) {
+        output += `<tr>
+                    <td>${localStorage.key(i)}</td>
+                    <td>${localStorage.getItem(localStorage.key(i))}</td>
+                  </tr>`;
+      }
+
+      document.getElementById("table").innerHTML = output;
+    </script>
+  </body>
+</html>

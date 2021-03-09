@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Övning 2</title>
+</head>
+<body onload="printMessage()">
+
+    <form id="myForm">
+        <h1>Ange ditt namn</h1>
+        <input id="inputName" type="text">
+        <button type="submit">Spara</button>
+    </form>
+
+    <div id="result"></div>
+
+
+    <script>
+
+        // En lösning från Kristoffer Ström
+
+        document.querySelector('#myForm').addEventListener('submit', saveName);
+
+        function saveName(e){
+            
+            const name = document.querySelector('#inputName').value;
+            localStorage.setItem('name', name);
+            printMessage();
+            
+            document.querySelector('#myForm').reset();
+
+            e.preventDefault();
+        }
+
+        function printMessage(){
+            const name = localStorage.getItem('name');
+            if(name != null)
+                document.querySelector('#result').innerHTML =
+                 `<h1>Välkommen ${name}</h1>`;
+        }
+    </script>
+
+    </body>
+    </html>

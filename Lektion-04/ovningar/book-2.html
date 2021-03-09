@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Book 2</title>
+  </head>
+  <body>
+    <h1>My Book 2</h1>
+    <table id="table"></table>
+
+    <script>
+      // En lösning från Björn Lindeberg
+      const book1 = {
+        title: "Bok1",
+        author: "Björn",
+        pages: 4,
+      };
+      const book2 = {
+        title: "Bok2",
+        author: "Björn",
+        pages: 1,
+      };
+      const book3 = {
+        title: "Bok3",
+        author: "Not Björn",
+        pages: 4000,
+      };
+
+      localStorage.setItem("book1", JSON.stringify(book1));
+      localStorage.setItem("book2", JSON.stringify(book2));
+      localStorage.setItem("book3", JSON.stringify(book3));
+
+      let getBooks = () => {
+        let books = [];
+
+        Object.keys(localStorage).forEach((key) => {
+          if (key.startsWith("book")) {
+            let book = JSON.parse(localStorage.getItem(key));
+            books.push(book);
+          }
+        });
+        return books;
+      };
+
+      let printBooks = (array) => {
+        let txt = ``;
+        array.forEach(
+          (book) =>
+            (txt += `
+    <tr>
+        <td>${book.title}</td>
+        <td>${book.author}</td>
+        <td>${book.pages}</td>
+    </tr>
+    `)
+        );
+
+        console.log(txt);
+        document.getElementById("table").innerHTML = txt;
+      };
+
+      printBooks(getBooks());
+    </script>
+  </body>
+</html>
