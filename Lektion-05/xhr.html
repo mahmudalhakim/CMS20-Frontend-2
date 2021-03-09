@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XHR</title>
+  </head>
+  <body>
+    <h1>XHR = XMLHttpRequest</h1>
+
+    <script>
+      // Skapa en instans av XMLHttpRequest
+      const xhr = new XMLHttpRequest();
+      console.log(xhr);
+
+      /*
+        0: request not initialized
+        1: server connection established
+        2: request received
+        3: processing request
+        4: request finished and response is ready 
+      */
+      xhr.onreadystatechange = function () {
+        console.log("readyState: " + xhr.readyState); // 0, 1, 2, 3, 4 (DONE)
+        console.log("status: " + xhr.status); // T.ex. 200 , 404
+        console.log("statusText: " + xhr.statusText); // T.ex. OK, NOT FOUND
+
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log(xhr.responseText);
+        }
+      };
+
+      // Skapa en request (förfrågan)
+      xhr.open("GET", "demo.txt");
+
+      // Skicka en request
+      xhr.send();
+    </script>
+  </body>
+</html>
