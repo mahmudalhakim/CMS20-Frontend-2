@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery - Metoden load()</title>
+  </head>
+  <body>
+    <h1>jQuery - Metoden load()</h1>
+
+    <p id="demo1"></p>
+
+    <hr>
+
+    <div id="demo2">NAVIGERING</div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#demo1").load("demo.txt" , function(response, status, xhr){
+                console.log(response);
+                console.log(status);
+                console.log(xhr);
+            });
+
+            $("#demo2").load("demo.html");
+
+        });
+
+        // Läs mer om load 
+        // https://api.jquery.com/load/
+
+    </script>
+  </body>
+</html>
