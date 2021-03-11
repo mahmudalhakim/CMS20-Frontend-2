@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Övning 2</title>
+    <style>
+        td{
+            border-bottom: 1px solid blue;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Övning 2</h1>
+    <button id="loadBtn">Visa en HTML-tabell över namn och email</button>
+    <table id="output"></table>
+
+    <script src="ajax.js"></script>
+    <script>
+
+      let endpoint = "https://jsonplaceholder.typicode.com/users";
+
+      document.getElementById("loadBtn").addEventListener("click", function () {
+       load(endpoint);
+      });
+
+      function render(users) {
+        let output = "<tr><th>Name</th><th>Email</th></tr>";
+        users.forEach(
+          (user) =>
+            (output += `<tr>
+            <td>${user.name}</td>
+            <td>${user.email}</td>
+            </tr>`)
+        );
+        document.getElementById("output").innerHTML = output;
+      }
+    </script>
+  </body>
+</html>
