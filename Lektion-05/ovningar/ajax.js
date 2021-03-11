@@ -1,6 +1,6 @@
 //  My Ajax Library
 
-function load(endpoint) {
+function load(endpoint, render) {
   const xhr = new XMLHttpRequest();
   xhr.open("GET", endpoint);
   xhr.send();

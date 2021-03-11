@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Övning 2</title>
+    <title>Extra övning </title>
     <style>
       td {
         border-bottom: 1px solid blue;
@@ -12,29 +12,23 @@
     </style>
   </head>
   <body>
-    <h1>Övning 2</h1>
+    <h1>Extra övning</h1>
+    <h2>En generell load-funktion i en egen fil</h2>
+    
     <button id="loadBtn">Visa en HTML-tabell över namn och email</button>
     <table id="output"></table>
 
+    <script src="ajax.js"></script>
     <script>
-      document.getElementById("loadBtn").addEventListener("click", load);
+      let endpoint = "https://jsonplaceholder.typicode.com/users";
 
-      function load() {
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", "https://jsonplaceholder.typicode.com/users");
-        xhr.send();
+      document.getElementById("loadBtn").addEventListener("click", function () {
+        // load är en generell funktion som finns i ajax.js
+        // OBS! renderUser är en callback
+        load(endpoint, renderUser);
+      });
 
-        xhr.onreadystatechange = function () {
-          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            console.log(xhr);
-            let data = JSON.parse(xhr.responseText); // Vi måste konvertera text till JSON
-            console.log(data);
-            render(data);
-          }
-        };
-      }
-
-      function render(users) {
+      function renderUser(users) {
         let output = "<tr><th>Name</th><th>Email</th></tr>";
         users.forEach(
           (user) =>
