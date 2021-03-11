@@ -11,7 +11,10 @@
     <h2>Arbeta med XML</h2>
 
     <button id="loadBtn">Visa alla titlar</button>
-    <div id="output"></div>
+    <ul id="output"></ul>
+    <hr>
+    <!-- render2()-->
+    <ul id="output2"></ul>
 
     <script>
       const loadBtn = document.getElementById("loadBtn");
@@ -28,6 +31,7 @@
             const xmlDoc = xhr.responseXML;
             //console.log(xmlDoc);
             render(xmlDoc);
+            render2(xmlDoc);
           }
         };
       }
@@ -35,9 +39,9 @@
       function render(xmlDoc) {
         console.log(xmlDoc);
         const allCDs = xmlDoc.querySelectorAll("CD");
-        console.log(allCDs);
+        console.log(allCDs); // NodeList
 
-        let list = "<ul>";
+        let list = "";
         for (const cd of allCDs) {
           console.log(cd);
           console.dir(cd);
@@ -46,11 +50,22 @@
           let title = cd.children[0].innerHTML;
           list += `<li>${title}</li>`;
         }
-        list += "</ul>";
 
         console.log(list);
 
         document.getElementById("output").innerHTML = list;
+      }
+
+      
+      // En ny version av render som konverterar 
+      // en HTMLCollection till en Array med Array.from
+      // Array.from har en callback som körs på varje element
+      // Metoden join konverterar arrayen till en string
+      function render2(xmlDoc) {
+        const allCDs = xmlDoc.getElementsByTagName("CD"); 
+        console.log(allCDs); // HTMLCollection
+        document.getElementById("output2").innerHTML = 
+        Array.from(allCDs, cd => `<li>${cd.children[0].innerHTML}</li>`).join("");
       }
     </script>
   </body>
