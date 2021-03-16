@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AngularJS - ng-click</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+  </head>
+
+  <body ng-app="" class="container">
+    <h1>AngularJS - ng-click</h1>
+
+    <h2>Exempel 1</h2>
+    <h3>{{ count }}</h3>
+    <button class="btn btn-outline-info" ng-init="count=0" ng-click="count = count + 1">
+        Klicka här
+    </button>
+    <h3>{{ count }}</h3>
+
+    <h2>Exempel 2</h2>
+    <div ng-init="show=1">
+        <button class="btn btn-outline-info" ng-click="show=1">Ett</button>
+        <button class="btn btn-outline-info" ng-click="show=2">Två</button>
+        <button class="btn btn-outline-info" ng-click="show=3">Tre</button>
+    </div>
+    <h3 ng-show="show == 1">Ett</h3>
+    <h3 ng-show="show == 2">Två</h3>
+    <h3 ng-show="show == 3">Tre</h3>
+
+    <script src="angular.js"></script>
+  </body>
+</html>

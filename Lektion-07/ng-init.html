@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AngularJS - ng-init</title>
+  </head>
+
+  <body ng-app="">
+    <h1>AngularJS - ng-init</h1>
+
+    <h2>Exempel 1</h2>
+    <div ng-init="moms=0.25">
+      <p>Pris exkl. moms: 100 kr</p>
+      <p>Pris inkl. moms: {{100 * (1 + moms) }} kr</p>
+    </div>
+
+    <h2>Exempel 2</h2>
+    <div ng-init=" firstname='Mahmud' ; lastname='Al Hakim' ">
+      <h3>My name is {{ firstname + " " + lastname }}</h3>
+    </div>
+
+    <h2>Exempel 3</h2>
+    <div ng-init="qty=10 ; cost=5">
+      <h3>Total: {{ qty * cost}}</h3>
+    </div>
+
+    <h2>Exempel 4</h2>
+    <div ng-init="qty=10 ; cost=50">
+      Antal: <br /><input type="number" min="0" ng-model="qty" /> <br />
+      Pris: <br /><input type="number" min="0" ng-model="cost" /> <br />
+      <h3>Total: {{ qty * cost}}</h3>
+    </div>
+
+    <h2>Exempel 5</h2>
+    <div ng-init="person = {firstname:'John' , lastname:'Doe'} ">
+      <h3>My Object: {{person}}</h3>
+      <h3>My Object: {{person.firstname}} {{person.lastname}}</h3>
+    </div>
+
+    <h2>Exempel 6</h2>
+    <div ng-init="cars = ['Volvo' , 'Saab'] ">
+      <h3>My Array: {{cars}}</h3>
+      <h3>First Car: {{cars[0]}}</h3>
+      <h3>Second Car: {{cars[1]}}</h3>
+    </div>
+
+    <h2>Exempel 7</h2>
+    <input type="text" 
+        ng-init="myColor='pink'" 
+        ng-model="myColor" 
+        style="background-color:{{myColor}}"
+    />
+    <script src="angular.js"></script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AngularJS - ng-repeat</title>
+  </head>
+
+  <body ng-app="">
+    <h1>AngularJS - ng-repeat</h1>
+
+    <h2>Exempel 1</h2>
+    <div ng-init="cars = ['Volvo' , 'Saab' , 'BMW' , 'Mazda'] ">
+        <div ng-repeat="car in cars">
+            {{car}}
+        </div> 
+    </div>
+
+    <h2>Exempel 2</h2>
+    <div ng-init="cars = ['Volvo' , 'Saab' , 'BMW' , 'Mazda'] ">
+        <h3 ng-repeat="car in cars">
+            {{car}}
+        </h3> 
+    </div>
+
+    <h2>Exempel 3</h2>
+    <ol ng-init="cars = ['Volvo' , 'Saab' , 'BMW' , 'Mazda'] ">
+        <li ng-repeat="car in cars">
+            {{car}}
+        </li> 
+    </ol>
+
+    <h2>Exempel 4</h2>
+    <div ng-init="person = {firstname:'John' , lastname:'Doe' , age:30} ">
+        <div ng-repeat="prop in person">
+            {{prop}}
+        </div>
+    </div>
+
+    <script src="angular.js"></script>
+  </body>
+</html>
