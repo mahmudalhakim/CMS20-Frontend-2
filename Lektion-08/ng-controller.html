@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Att arbeta med controllers</title>
+  </head>
+  <body ng-app="myApp">
+    <h1>Arbeta med controllers</h1>
+
+    <h1>myCtrl</h1>
+    <h2 ng-controller="myCtrl">{{ firstName + " " + lastName }}</h2>
+
+    <h2>personCtrl</h2>
+    <div ng-controller="personCtrl">
+      First Name <br />
+      <input type="text" ng-model="firstName" /> <br />
+      Last Name <br />
+      <input type="text" ng-model="lastName" /> <br />
+      <h2>{{ fullName() }}</h2>
+    </div>
+
+    <h2>addressCtrl</h2>
+    <div ng-controller="addressCtrl">
+      <input type="text" ng-model="streetAddress" placeholder="Adress" /><br />
+      <input type="text" ng-model="postalCode" placeholder="Postnummer" /><br />
+      <input type="text" ng-model="city" placeholder="Postord" /><br />
+      <h3>{{ fullAddress() }}</h3>
+      <p>OBS! br funkar inte!</p>
+      <p>
+        Använd ng-bind-html istället! <br />
+        Men, du behöver injektera ngSanitize (se rad 1 i app.js) <br>
+        Du behöver också hämta ngSanitize (en extra js-fil). <br />
+      </p>
+      <h3 ng-bind-html="fullAddress()"></h3>
+    </div>
+
+    <h2>namesCtrl</h2>
+    <ul ng-controller="namesCtrl">
+      <li ng-repeat="person in names">
+        {{ person.name + ', ' + person.country }}
+      </li>
+    </ul>
+
+    <h2>rootScope</h2>
+    <h3 style="color:{{color}}">My color is {{ color }}</h3>
+
+    <h2>Filter - Exempel 1</h2>
+    <div ng-controller="personCtrl">
+      <h3>{{ firstName | uppercase }}</h3>
+      <h3>{{ lastName | lowercase }}</h3>
+    </div>
+
+    <h2>Filter - Exempel 2</h2>
+    <h3>Sök:</h3>
+    <input type="text" ng-model="search" />
+    <ul ng-controller="namesCtrl">
+      <li ng-repeat="person in names | filter:search">{{ person.name }}</li>
+    </ul>
+
+    <script src="angular.js"></script>
+    <script src="angular-sanitize.js"></script>
+    <script src="app.js"></script>
+
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </body>
+</html>

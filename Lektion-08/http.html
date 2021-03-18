@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Att arbeta med HTTP</title>
+  </head>
+  <body ng-app="myApp">
+    <h1>Arbeta med HTTP</h1>
+
+    <h2>Users</h2>
+    <ul ng-controller="usersCtrl">
+      <li ng-repeat="user in users">{{user.name}}</li>
+    </ul>
+
+    <h2>Random Fox</h2>
+    <img
+      ng-controller="foxCtrl"
+      style="width: 100%; height: auto"
+      src="{{foxImage}}"
+      alt="Random fox"
+    />
+
+    <h2>My Favorite Memes</h2>
+    <div ng-controller="memeCtrl">
+      <div ng-repeat="meme in memes">
+        <h3>{{meme.name}}</h3>
+        <img
+          src="{{meme.url}}"
+          alt="{{meme.name}}"
+          style="width: auto; height: 200px"
+        />
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Fake Store</h2>
+    <div ng-controller="shopCtrl">
+      <div ng-repeat="product in products" 
+      style="display:inline-block;margin:10px;padding:10px; border: 1px solid orange;">
+        <h3>{{product.title}}</h3>
+        <img src="{{product.image}}" alt="{{product.title}}" style="width:200px;height:auto" />
+        <h4>Price: ${{product.price}}</h4>
+      </div>
+    </div>
+
+    <script src="angular.js"></script>
+    <script src="angular-sanitize.js"></script>
+    <script src="app.js"></script>
+
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </body>
+</html>
