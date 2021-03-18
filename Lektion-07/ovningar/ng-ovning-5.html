@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Övning 5</title>
+  </head>
+  <body ng-app="">
+    <h1>Övning 5</h1>
+    <table>
+      <tr>
+        <th>Produkt</th>
+        <th>Pris</th>
+        <th>Antal</th>
+        <th>Summa</th>
+      </tr>
+      <tr>
+        <td>Mjölk</td>
+        <td ng-init="cost1=10">10 kr</td>
+        <td>
+          <input type="number" min="0" ng-init="qty1=0" ng-model="qty1" />
+        </td>
+        <td>{{ cost1 * qty1 }}</td>
+      </tr>
+      <tr>
+        <td>Grädde</td>
+        <td ng-init="cost2=15">15 kr</td>
+        <td>
+          <input type="number" min="0" ng-init="qty2=0" ng-model="qty2" />
+        </td>
+        <td>{{ cost2 * qty2 }}</td>
+      </tr>
+      <tr>
+        <td>Totalt</td>
+        <td></td>
+        <td></td>
+        <td>{{ cost1 * qty1 + cost2 * qty2 }}</td>
+      </tr>
+    </table>
+    <script src="angular.js"></script>
+  </body>
+</html>
